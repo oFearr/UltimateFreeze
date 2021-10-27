@@ -1,0 +1,75 @@
+########################################
+#                                      #
+#           EXAMPLE CONFIG             #
+#                                      #
+########################################
+
+# MATERIAL INFO (GUI Items)
+
+#For legacy, put material name followed by : and the numerical id,
+#'stained_glass_pane:4' for example
+
+#Placeholder List
+
+# - '<player>' used to get the frozen player's name
+# - '<staff>' used to get the staff member who froze the player (can be used in all freeze messages)
+# - '{prefix}' used to get the plugin prefix for chat messages
+
+#GUI
+
+plugin-prefix: "&8[&c&lUltimateFreeze&8]"
+gui-name: "&c&lFrozen!" #Freeze GUI title
+gui-size: 36 #Set the freeze gui size at no larger than 54
+gui-surrounding: "STAINED_GLASS_PANE:14" #The freeze gui surrounding material will fill the empty slots within the GUI
+
+#The item within the GUI that will display instructions for the player
+gui-info-item: "PAPER" #Set the item type
+gui-info-item-slot: 13 #Set the item slot
+gui-info-name: "&c&lFrozen! Join Discord" #Set the item name
+gui-info-lore: #Set the item lore, you may add as many lines as you wish
+  - "&cdiscord.gg/yourserver"
+  - "&cYou have 10 Minutes!"
+
+#Messages
+
+player-freeze-message: "{prefix} &cYou've been frozen! Join discord @ discord.gg/yourserver" # Sent to the player when they get frozen
+staff-freeze-message: "{prefix} >> &c<player> has been frozen by <staff>!" # Sent to all other staff members
+player-unfreeze-message: "{prefix} >> &aYou've been unfrozen! Sorry for the inconvenience." # Sent to the player when you unfreeze them
+staff-unfreeze-message: "{prefix} >> &a<staff> has unfrozen <player>!" # Sent to the staff when unfreezing a player
+cant-freeze-message: "{prefix} >> &cYou can't freeze this player!" # Message sent if the player has the "ultimatefreeze.bypass" permission (bypasses screensharing)
+not-online-message: "{prefix} >> &cThat player is not online!" # Sent if you try to freeze an offline player
+missing-arguments-message: "{prefix} >> &cIncorrect usage! /freeze <player>" # Sent if you don't use the correct usage
+insufficient-permissions-message: "{prefix} >> &cInsufficient permissions!"
+
+alert-staff-on-freeze: true #Alert all staff when a player is frozen
+alert-staff-on-unfreeze: true #Alert all staff when a player is unfrozen
+
+#When a player gets frozen
+when-frozen:
+  #Teleport the player to this location
+  teleport:
+    enabled: true
+    world: "world"
+    x: 100
+    y: 50
+    z: 100
+  disable-close-inventory: true #Prevents the player from closing the freeze inventory
+  disable-damage: true #disables damage to and from the player
+  disable-item-drop: true
+  disable-item-pickup: true
+  disable-movement: true
+  disable-looking: false #Disable head movement
+  disable-block-place: true
+  disable-block-break: true
+  disable-interaction: true #Prevents player from using any item abilities/clicking buttons, ect...
+  disable-falling: false #May cause issues with anti-cheat if enabled
+  disable-chat: true #Also disables commands (if they somehow get out of the GUI)
+
+#When a player logs out while frozen
+logout-frozen:
+  staff-chat-msg: "{prefix} >> &c<player> has logged out out while frozen!" # Chat message sent to staff
+  issue-commands: false
+  #These commands will be ran when a player logs out while frozen if the commands are enabled
+  commands:
+    - "ban <player> Logging out while frozen!"
+

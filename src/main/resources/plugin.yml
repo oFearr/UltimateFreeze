@@ -1,0 +1,30 @@
+name: UltimateFreeze
+version: ${project.version}
+main: me.ofearr.ultimatefreeze.UltimateFreeze
+authors: [oFearr]
+description: Freeze players on your server for easy screenshares!
+api-version: 1.13
+commands:
+  freeze:
+    description: Freeze players on your server.
+    aliases: [uf, ultimatefreeze, ss, screenshare]
+  frozenlist:
+    description: View all the frozen players on your server.
+    aliases: [fp, ssgui, screensharegui, frozengui, ss-gui, frozenplayers]
+
+permissions:
+  ultimatefreeze.freeze:
+    description: Freeze or unfreeze a player
+  ultimatefreeze.frozenlist:
+    description: Used to open a gui displaying all the currently frozen players and their stats.
+  ultimatefreeze.bypass:
+    description: Anyone with this permission node cannot be frozen.
+  ultimatefreeze.notify:
+    description: Anyone with this permission node will be notified about screenshare events (logouts,freeze,unfreeze).
+  ultimatefreeze.*:
+    description: Grants access to all of the ultimate freeze permissions.
+    children:
+      ultimatefreeze.freeze: true
+      ultimatefreeze.frozenlist: true
+      ultimatefreeze.bypass: true
+      ultimatefreeze.notify: true
